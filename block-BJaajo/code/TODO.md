@@ -8,6 +8,8 @@ setTimeout(() => console.log('Second'), 0);
 console.log('Third   ');
 ```
 
+![image info](./img/new1.png)
+
 2.
 
 ```js
@@ -20,7 +22,7 @@ setTimeout(() => console.log('Third'), 0); // execute this code after 1000 ms
 console.log('Third');
 ```
 
-3.
+![image info](./img/new2.png) 3.
 
 ```js
 console.log('First');
@@ -32,7 +34,7 @@ setTimeout(() => console.log('Third'), 0);
 console.log('Fourth');
 ```
 
-4.
+![image info](./img/new3.png) 4.
 
 ```js
 console.log('First');
@@ -62,7 +64,7 @@ runWhileLoopForNSeconds(3);
 console.log('Third');
 ```
 
-6. Convert the synchronous code given below into asynchronous. If you execute this code it will print one, two and three. Change the code in such a way that it should print `one`, `three` and `two`. You are not allowed to move the code up and down.
+![image info](./img/new4.png) 6. Convert the synchronous code given below into asynchronous. If you execute this code it will print one, two and three. Change the code in such a way that it should print `one`, `three` and `two`. You are not allowed to move the code up and down.
 
 ```js
 console.log('one');
