@@ -1,19 +1,27 @@
 1. Create a promise. Have it resolve with a value of `Promise Resolved!` in resolve after a delay of 1000ms, using `setTimeout`. Print the contents of the promise after it has been resolved by passing `console.log` to `.then`
 
 ```js
-// Your code
+let data = new Promise((res, rej) => {
+  setTimeout(() => res(`Promise Resolved!`), 5000);
+}).then((value) => console.log(value));
 ```
 
 2. Create another promise. Now have it reject with a value of `Rejected Promise!` without using `setTimeout`. Print the contents of the promise after it has been rejected by passing console.log to `.catch`
 
 ```js
-// Your code
+let data = new Promise((res, rej) => {
+  setTimeout(() => rej(`Rejected Promise!`), 5000);
+}).catch((error) => console.log(error));
 ```
 
 3. Create another promise. Now have it reject with a value of `Rejected Promise!` without using `setTimeout`. Print the contents of the promise after it has been rejected by passing console.log to `.catch` and also use `.finally` to log message `Promise Settled!`.
 
 ```js
-// Your code
+let data = new Promise((res, rej) => {
+  setTimeout(() => rej(`Rejected Promise!`), 5000);
+})
+  .catch((error) => console.log(error))
+  .finally(() => console.log('Finally!'));
 ```
 
 4. What will be the output of the code below.
@@ -33,7 +41,12 @@ console.log('D');
 5. Write a function named `wait` that accepts `time` in ms returns a promise. The promise gets resolved after given time.
 
 ```js
-// Your code
+function wait(t) {
+  return new Promise((res, rej) => {
+    setTimeout(() => res('Promise Resolved!'), t);
+  });
+}
+wait(1000);
 ```
 
 6. Do the following:
@@ -46,7 +59,17 @@ console.log('D');
 - Catch the error using `.catch`
 
 ```js
-// Your code
+let data = new Promise((res, rej) => {
+  rej(21);
+})
+  .then((value) => value + 10)
+  .then((value) => value + 100)
+  .then((value) => {
+    if (value > 100) {
+      throw new Error('greater than 100');
+    }
+  })
+  .catch((error) => console.log(error));
 ```
 
 7. Do the following:
@@ -69,7 +92,13 @@ console.log('D');
 - Chain `.then` on above and return `4` also check the value you get access to by logging
 
 ```js
-// Your code
+let first = new Promise((res, rej) => {
+  res(1);
+})
+  .then((value) => value + 1)
+  .then((value) => value + 1)
+  .then((value) => value + 1)
+  .then((value) => console.log(value));
 ```
 
 9. Do the following:
