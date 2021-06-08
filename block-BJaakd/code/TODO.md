@@ -27,6 +27,7 @@ let data = new Promise((res, rej) => {
 4. What will be the output of the code below.
 
 ```js
+// A D C B
 console.log('A');
 
 // Asynchronous code finises in 0 seconds (Callback Queue)
@@ -60,7 +61,7 @@ wait(1000);
 
 ```js
 let data = new Promise((res, rej) => {
-  rej(21);
+  res(21);
 })
   .then((value) => value + 10)
   .then((value) => value + 100)
@@ -81,7 +82,17 @@ let data = new Promise((res, rej) => {
 - Use `.then` and log the value
 
 ```js
-// Your code
+let first = new Promise((res, rej) => {
+  res(['A']);
+})
+  .then((value) => value.push('B'))
+  .then((value) => {
+    let obj = {};
+    obj[0] = value[0];
+    obj[1] = value[1];
+    return obj;
+  })
+  .then((value) => console.log(value));
 ```
 
 8. Do the following:
@@ -109,10 +120,20 @@ let first = new Promise((res, rej) => {
 - Use `.then` on `first` and return `4` also check the value you get access to by logging
 
 ```js
-// Your code
+let first = new Promise((res, rej) => {
+  res(1);
+}).then((value) => value + 1);
+first = first.then((value) => value + 1);
+first = first.then((value) => value + 1);
+first.then((value) => console.log(value));
 ```
 
 10. Try to understand the difference between the problem 8 and 9. Write your observation.
+
+```js
+//In the 8th question, we are doing the Promise chain, so that the return value from one chain to the other chain.value will undergo the required operations and gives the required output.
+//9th question, we are assigning the value of "first" with new promise, applied the "then" on it.  assign this value to first again , apply it again and agian till the value outcomes.
+```
 
 11. Do the following
 
@@ -122,5 +143,10 @@ let first = new Promise((res, rej) => {
 - Use `.then` to log the value
 
 ```js
-// Your code
+let first = new Promise((res, rej) => {
+  res(`John`);
+})
+  .then((value) => `Arya`)
+  .then((value) => setTimeout(`Bran`, 2000))
+  .then((value) => console.log(value));
 ```

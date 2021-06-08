@@ -1,6 +1,11 @@
 let first = new Promise((res, rej) => {
-  res(1);
-}).then((value) => value + 1);
-first.then((value) => value + 1);
-first.then((value) => value + 1);
-first.then((value) => console.log(value));
+  res(['A']);
+})
+  .then((value) => value.push('B'))
+  .then((value) => {
+    let obj = {};
+    obj[0] = value[0];
+    obj[1] = value[1];
+    return obj;
+  })
+  .then((value) => console.log(value));
