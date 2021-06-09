@@ -1,11 +1,3 @@
-let first = new Promise((res, rej) => {
-  res(['A']);
-})
-  .then((value) => value.push('B'))
-  .then((value) => {
-    let obj = {};
-    obj[0] = value[0];
-    obj[1] = value[1];
-    return obj;
-  })
-  .then((value) => console.log(value));
+let data = new Promise((res, rej) => {
+  setTimeout(() => rej(`Rejected Promise!`), 5000);
+}).catch((error) => console.log(error));
