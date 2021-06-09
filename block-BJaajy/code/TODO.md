@@ -19,16 +19,26 @@ const two = new Promise((resolve, reject) =>
 const three = new Promise((resolve, reject) =>
   setTimeout(() => resolve('John'), 3000)
 );
+let all = Promise.all([one, two, three])
+  .then((res) => console.log(res))
+  .catch((error) => console.log(error)); // this will throw an error for two .
+let all = Promise.allSettled([one, two, three])
+  .then((res) => console.log(res))
+  .catch((error) => console.log(error));
+//   0: {status: "fulfilled", value: "Arya"}
+// 1: {status: "rejected", reason: Error: Whoops! at <anonymous>:5:27}
+// 2: {status: "fulfilled", value: "John"}
 ```
 
 - What will be the output of the following code snippet? How much time will it take for the promise to resolve?
 
 ```js
-Promise.all([
+let all = Promise.all([
   new Promise((resolve, reject) => {
     setTimeout(() => resolve('Arya'), 1000);
   }),
   'Sam',
   { name: 'John' },
 ]).then(console.log);
+//it will take one second.because to resolve the "Arya" , it will take like 1000ms.
 ```
