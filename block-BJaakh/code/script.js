@@ -108,7 +108,6 @@ function createUI(data) {
     label.addEventListener('blur', () => {
       handleChange(event, element.title, element._id);
     });
-    items_left.innerText = `${arrayTodos.length} items left`;
 
     let li = document.createElement('li');
     li.append(input, label, span);
