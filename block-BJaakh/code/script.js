@@ -1,11 +1,6 @@
 let input = document.querySelector('.todos');
-let completedBtn = document.querySelector('.completedBtn');
-let activeBtn = document.querySelector('.activeBtn');
-let allBtn = document.querySelector('.allBtn');
-let combinedBtn = document.querySelector('.combined_buttons');
 let items_left = document.querySelector('.items_left');
 let clearBtn = document.querySelector('.clearBtn');
-
 let arrayTodos = [];
 
 let url = 'https://sleepy-falls-37563.herokuapp.com/api/todo';
@@ -15,6 +10,8 @@ function main() {
     .then((res) => res.json())
     .then((data) => createUI(data.todos));
 }
+
+//To display the Todos on the screen.
 fetch(url)
   .then((res) => res.json())
   .then((data) => createUI(data.todos));
@@ -50,11 +47,12 @@ function handleClick(event) {
 
   items_left.innerText = `${arrayTodos.length} items left`;
 }
-function handleChange(event, title, id) {
+function handleCheckbox(event, title, id) {
   console.log(event);
+  console.log(event.target.innerText);
   let data = {
     todo: {
-      title: event.target.value,
+      title: title,
       isCompleted: event.target.checked,
     },
   };
@@ -67,10 +65,24 @@ function handleChange(event, title, id) {
   }).then(() => main());
 }
 
-if (arrayTodos.length <= 0) {
-  combinedBtn.classList.add('display_block');
+function handleChange(event, title, id) {
+  console.log(event.target.innerText);
+  let data = {
+    todo: {
+      title: event.target.innerText,
+      isCompleted: event.target.checked,
+    },
+  };
+  fetch(url + `/${id}`, {
+    method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data), // body data type must match "Content-Type" header
+  });
 }
 
+//function createUI will create the UI.
 function createUI(data) {
   console.log(data);
   let ul = document.querySelector('.display');
@@ -81,7 +93,7 @@ function createUI(data) {
     input.type = 'checkbox';
     input.classList.add('checkbox_style');
     input.addEventListener('input', () => {
-      handleChange(event, element.title, element._id);
+      handleCheckbox(event, element.title, element._id);
     });
     input.checked = element.isCompleted;
     let label = document.createElement('label');
@@ -93,7 +105,7 @@ function createUI(data) {
     span.setAttribute('data-id', element._id);
     span.innerText = 'x';
     span.addEventListener('click', handleClick);
-    label.addEventListener('dblclick', () => {
+    label.addEventListener('blur', () => {
       handleChange(event, element.title, element._id);
     });
     items_left.innerText = `${arrayTodos.length} items left`;
@@ -102,26 +114,6 @@ function createUI(data) {
     li.append(input, label, span);
     ul.append(li);
   });
-}
-
-activeBtn.addEventListener('click', createActiveUI);
-function createActiveUI() {
-  let activeTodos = arrayTodos.filter((todo) => !todo.isDone);
-  createUI(activeTodos);
-}
-
-allBtn.addEventListener('click', createAllUI);
-function createAllUI() {}
-
-completedBtn.addEventListener('click', createCompletedUI);
-function createCompletedUI() {
-  let activeTodos = arrayTodos.filter((todo) => todo.isDone);
-  createUI(activeTodos);
-}
-clearBtn.addEventListener('click', clearAllUI);
-
-function clearAllUI() {
-  arrayTodos = arrayTodos.filter((todo) => !todo.isDone);
 }
 
 input.addEventListener('keyup', handleKey);
