@@ -125,11 +125,20 @@ table {
 .flex {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.flex-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 article {
   flex: 0 1 30%;
   border: 2px solid grey;
   margin-top: 1rem;
+  background-color: #fefefe;
 }
 .display {
   border: 2px solid yellow;
@@ -173,4 +182,50 @@ article {
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+article {
+  padding: 4rem 2rem;
+  margin: 2rem;
+}
+.display {
+  max-width: 100%;
+  width: 1200px;
+  margin: 0 auto;
+}
+body {
+  background-color: #6a74d6;
+}
+article h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+article p {
+  font-size: 1.2rem;
+  margin-top: 2rem;
+}
+button {
+  background-color: black;
+  color: rgb(241, 223, 119);
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  margin-top: 2rem;
+  font-size: 1.2rem;
+}
+.modal-content {
+  background-color: rgb(6, 95, 95);
+}
+.modal-list {
+  font-size: 2rem;
+  color: white;
+  font-weight: 700;
+}
+.modal-list li {
+  border: 2px solid rgb(151, 140, 75);
+  padding: 2rem;
+}
+.header-section {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 1rem;
 }

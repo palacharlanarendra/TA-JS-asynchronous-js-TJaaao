@@ -7,6 +7,7 @@ let promise = fetch('https://www.anapioficeandfire.com/api/books')
   .then((userData) => userData.forEach((elem) => createMainUI(elem)));
 
 function createMainUI(arg) {
+  console.log(arg);
   let article = document.createElement('article');
   let heading = document.createElement('h2');
   let authorName = document.createElement('p');
@@ -14,8 +15,8 @@ function createMainUI(arg) {
 
   heading.innerText = arg.name;
   authorName.innerText = arg.authors[0];
-  characterBtn.innerText = 'Show Characters';
-
+  characterBtn.innerText = `Show Characters (${arg.numberOfPages})`;
+  article.setAttribute('class', 'flex-box');
   characterBtn.setAttribute('id', 'myBtn');
   characterBtn.addEventListener('click', () => {
     createModalData(arg.characters);
@@ -39,8 +40,10 @@ function createModalData(data) {
 }
 
 function createModalUI(data) {
-  let modal = document.getElementById('myModal');
+  let preLoader = document.createElement('img');
+  preLoader.src = './images/Spinner-1s-200px.gif';
 
+  let modal = document.getElementById('myModal');
   let btn = document.getElementById('myBtn');
   let span = document.getElementsByClassName('close')[0];
   modal.style.display = 'block';
@@ -55,7 +58,6 @@ function createModalUI(data) {
   };
 
   let li = document.createElement('li');
-  li.innerText = `${data.name}:${data.aliases[0]}`;
-  console.log(li);
+  li.innerText = `${data.name} : ${data.aliases[0]}`;
   modalList.append(li);
 }
