@@ -124,7 +124,69 @@ table {
 }
 img {
   width: 20rem;
+  height: 14rem;
+}
+body {
+  background-color: #f0dfb8;
 }
 .flex {
   display: flex;
+  margin: 4rem 2rem;
+}
+.container {
+  max-width: 100%;
+  width: 1200px;
+  margin: 0 auto;
+}
+article {
+  display: flex;
+  flex-direction: column;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0rem 1rem;
+}
+
+article p {
+  display: inline-block;
+  max-width: 7rem;
+  padding: 0.5rem 1rem;
+  color: aliceblue;
+  background-color: #407e7f;
+  border-radius: 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+article a {
+  text-decoration: none;
+  color: white;
+  background-color: black;
+  padding: 0.5rem 1rem;
+}
+article a {
+  max-width: 8rem;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: 2rem;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid rgb(146, 146, 146);
+  margin-top: 3rem;
+}
+select {
+  width: 18rem;
+  height: 2rem;
+  font-size: 1.5rem;
+  background-color: rgb(221, 221, 221) y;
+}
+.header-section {
+  background-color: black;
+  color: white;
+  text-align: center;
+  font-size: 3rem;
+  padding: 0.5rem;
 }
